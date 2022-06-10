@@ -43,17 +43,11 @@ public static class Program
     private static async Task StartPipeServer()
     {
         PipeServer = new PipeServer<Message>(Constants.PipeName, formatter: new SystemTextJsonFormatter());
-        PipeServer.ClientConnected += (o, args) =>
-        {
-            Console.WriteLine($"Client {args.Connection.PipeName} is now connected!");
-        };
-        PipeServer.ClientDisconnected += (o, args) =>
-        {
-            Console.WriteLine($"Client {args.Connection.PipeName} disconnected");
-        };
+        // PipeServer.ClientConnected += (o, args) => Console.WriteLine("Connection from API server!");
+        // PipeServer.ClientDisconnected += (o, args) => Console.WriteLine("API server disconnected");
         PipeServer.MessageReceived += async (sender, args) =>
         {
-            Console.WriteLine($"Client {args.Connection.PipeName} says: {args.Message}");
+            Console.WriteLine($"Message from API: {args.Message?.MessageType}");
 
             var msg = args.Message;
             if (msg == null) return;

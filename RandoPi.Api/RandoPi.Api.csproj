@@ -12,6 +12,7 @@
     <ItemGroup>
         <PackageReference Include="H.Formatters.System.Text.Json" Version="12.0.38" />
         <PackageReference Include="H.Pipes" Version="2.0.38" />
+        <PackageReference Include="luxick.Result" Version="1.0.0" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
     </ItemGroup>
     

@@ -43,7 +43,7 @@ public static class Program
         Task.Run(() =>
         {
             // Give the timer a grace period for the main process to start up
-            Task.Delay(5000);
+            Task.Delay(7000);
 
             var timer = new Timer(1000);
             timer.Elapsed += (_, _) =>
