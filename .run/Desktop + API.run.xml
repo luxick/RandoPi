@@ -1,7 +1,7 @@
 ﻿<component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Desktop + API" type="CompoundRunConfigurationType">
     <toRun name="RandoPi.Api" type="LaunchSettings" />
-    <toRun name="RandoPi.Dektop" type="DotNetProject" />
+    <toRun name="RandoPi.Desktop" type="DotNetProject" />
     <method v="2" />
   </configuration>
 </component>
