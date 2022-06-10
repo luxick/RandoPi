@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RandoPi.Api", "RandoPi.Api\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RandoPi.Shared", "RandoPi.Shared\RandoPi.Shared.csproj", "{E4EE7E4C-FC3F-4A2A-967D-BFAF1C7F8D08}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RandoPi.Client", "RandoPi.Client\RandoPi.Client.csproj", "{14CE6BF6-399F-48C2-8A46-78CED31BEB31}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{E4EE7E4C-FC3F-4A2A-967D-BFAF1C7F8D08}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E4EE7E4C-FC3F-4A2A-967D-BFAF1C7F8D08}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E4EE7E4C-FC3F-4A2A-967D-BFAF1C7F8D08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14CE6BF6-399F-48C2-8A46-78CED31BEB31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14CE6BF6-399F-48C2-8A46-78CED31BEB31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14CE6BF6-399F-48C2-8A46-78CED31BEB31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14CE6BF6-399F-48C2-8A46-78CED31BEB31}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

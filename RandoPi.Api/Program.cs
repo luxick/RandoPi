@@ -26,12 +26,9 @@ public static class Program
         }
 
         app.UseHttpsRedirection();
-
         app.UseAuthorization();
         app.MapControllers();
-        
-        StartMainProcessWatchdog(app);
-
+        app.StartMainProcessWatchdog();
         app.Run();
     }
 
@@ -39,7 +36,7 @@ public static class Program
     /// Starts a watchdog. Will shut down the API server if the main proccess has exited
     /// </summary>
     /// <param name="app">Webapplication instance</param>
-    private static void StartMainProcessWatchdog(IHost app) =>
+    private static void StartMainProcessWatchdog(this IHost app) =>
         Task.Run(() =>
         {
             // Give the timer a grace period for the main process to start up
