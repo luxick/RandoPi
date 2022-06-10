@@ -14,5 +14,5 @@ public static class Constants
     /// Name of the main process. Used by the API server watchdog
     /// </summary>
     // TODO Check process names for linux
-    public const string MainProcessName = "RandoPi";
+    public const string MainProcessName = "RandoPi.Desktop";
 }

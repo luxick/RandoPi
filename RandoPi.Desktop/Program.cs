@@ -7,30 +7,19 @@ using H.Pipes;
 using RandoPi.Shared;
 using MessageType = RandoPi.Shared.MessageType;
 
-namespace RandoPi;
+namespace RandoPi.Desktop;
 
 public static class Program
 {
-    public static PipeServer<Message> PipeServer;
-    
     [STAThread]
     public static void Main(string[] args)
     {
         Task.Run(async () => await StartPipeServer());
+        StartApiServer();
         
-        var startInfo = new ProcessStartInfo
-        {
-            UseShellExecute = true,
-            FileName = "RandoPi.Api.exe"
-        };
-        
-#if !DEBUG
-        StaticData.ApiServerWorker = Process.Start(startInfo);
-#endif
-
         Application.Init();
         
-        var app = new Application("org.RandoPi.RandoPi", GLib.ApplicationFlags.None);
+        var app = new Application("org.RandoPi.Desktop.RandoPi.Desktop", GLib.ApplicationFlags.None);
         app.Register(GLib.Cancellable.Current);
         
         var win = new MainWindow();
@@ -40,12 +29,23 @@ public static class Program
         Application.Run();
     }
 
+    private static void StartApiServer()
+    {
+        if (Debugger.IsAttached) return;
+        
+        var startInfo = new ProcessStartInfo
+        {
+            UseShellExecute = true,
+            FileName = "RandoPi.Api.exe"
+        };
+
+        StaticData.ApiServerWorker = Process.Start(startInfo);
+    }
+
     private static async Task StartPipeServer()
     {
-        PipeServer = new PipeServer<Message>(Constants.PipeName, formatter: new SystemTextJsonFormatter());
-        // PipeServer.ClientConnected += (o, args) => Console.WriteLine("Connection from API server!");
-        // PipeServer.ClientDisconnected += (o, args) => Console.WriteLine("API server disconnected");
-        PipeServer.MessageReceived += async (sender, args) =>
+        var server = new PipeServer<Message>(Constants.PipeName, formatter: new SystemTextJsonFormatter());
+        server.MessageReceived += async (sender, args) =>
         {
             Console.WriteLine($"Message from API: {args.Message?.MessageType}");
 
@@ -68,6 +68,6 @@ public static class Program
         };
         Console.WriteLine("Main process pipe server running");
 
-        await PipeServer.StartAsync();
+        await server.StartAsync();
     }
 }

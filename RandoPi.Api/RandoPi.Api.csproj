@@ -4,7 +4,7 @@
         <TargetFramework>net6.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
-        <OutputPath>..\RandoPi\bin\$(Configuration)\</OutputPath>
+        <OutputPath>..\RandoPi.Desktop\bin\$(Configuration)\</OutputPath>
     </PropertyGroup>
     
     

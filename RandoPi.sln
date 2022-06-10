@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RandoPi", "RandoPi\RandoPi.csproj", "{339106E0-3FD7-4CB9-AC92-27FE5A5A2442}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RandoPi.Desktop", "RandoPi.Desktop\RandoPi.Desktop.csproj", "{339106E0-3FD7-4CB9-AC92-27FE5A5A2442}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RandoPi.Api", "RandoPi.Api\RandoPi.Api.csproj", "{7A895980-A923-4973-BEF1-8DA8E84010EC}"
 EndProject

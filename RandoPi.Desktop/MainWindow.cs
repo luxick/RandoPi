@@ -3,7 +3,7 @@ using Gtk;
 using RandoPi.Shared;
 using UI = Gtk.Builder.ObjectAttribute;
 
-namespace RandoPi
+namespace RandoPi.Desktop
 {
     class MainWindow : Window
     {

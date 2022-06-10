@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace RandoPi;
+namespace RandoPi.Desktop;
 
 public static class StaticData
 {
