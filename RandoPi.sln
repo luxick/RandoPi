@@ -2,6 +2,10 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RandoPi", "RandoPi\RandoPi.csproj", "{339106E0-3FD7-4CB9-AC92-27FE5A5A2442}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RandoPi.Api", "RandoPi.Api\RandoPi.Api.csproj", "{7A895980-A923-4973-BEF1-8DA8E84010EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RandoPi.Shared", "RandoPi.Shared\RandoPi.Shared.csproj", "{E4EE7E4C-FC3F-4A2A-967D-BFAF1C7F8D08}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +16,13 @@ Global
 		{339106E0-3FD7-4CB9-AC92-27FE5A5A2442}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{339106E0-3FD7-4CB9-AC92-27FE5A5A2442}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{339106E0-3FD7-4CB9-AC92-27FE5A5A2442}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A895980-A923-4973-BEF1-8DA8E84010EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A895980-A923-4973-BEF1-8DA8E84010EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A895980-A923-4973-BEF1-8DA8E84010EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A895980-A923-4973-BEF1-8DA8E84010EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4EE7E4C-FC3F-4A2A-967D-BFAF1C7F8D08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4EE7E4C-FC3F-4A2A-967D-BFAF1C7F8D08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4EE7E4C-FC3F-4A2A-967D-BFAF1C7F8D08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4EE7E4C-FC3F-4A2A-967D-BFAF1C7F8D08}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

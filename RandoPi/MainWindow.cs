@@ -1,5 +1,6 @@
 using System;
 using Gtk;
+using RandoPi.Shared;
 using UI = Gtk.Builder.ObjectAttribute;
 
 namespace RandoPi
@@ -26,6 +27,8 @@ namespace RandoPi
         private void Window_DeleteEvent(object sender, DeleteEventArgs a)
         {
             Application.Quit();
+            // Top the API server
+            // StaticData.ApiServerWorker.Kill(true);
         }
 
         private void Button1_Clicked(object sender, EventArgs a)
