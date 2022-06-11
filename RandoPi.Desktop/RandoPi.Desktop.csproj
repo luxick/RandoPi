@@ -22,4 +22,11 @@
       <ProjectReference Include="..\RandoPi.Shared\RandoPi.Shared.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="image.png" />
+      <Content Include="image.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+
 </Project>
