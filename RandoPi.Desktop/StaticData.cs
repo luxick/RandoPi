@@ -6,4 +6,6 @@ public static class StaticData
 {
     public static Process ApiServerWorker;
 
+    public static AppSettings AppSettings { get; set; }
+    
 }

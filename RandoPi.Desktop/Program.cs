@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Gtk;
 using H.Formatters;
 using H.Pipes;
+using Microsoft.Extensions.Configuration;
 using RandoPi.Shared;
 using MessageType = RandoPi.Shared.MessageType;
 
@@ -14,12 +15,14 @@ public static class Program
     [STAThread]
     public static void Main(string[] args)
     {
-        Task.Run(async () => await StartPipeServer());
-        StartApiServer();
+        LoadAppSettings();
+
+        if (StaticData.AppSettings.StartApiServer)
+            StartApiServer();
         
         Application.Init();
         
-        var app = new Application("org.RandoPi.Desktop.RandoPi.Desktop", GLib.ApplicationFlags.None);
+        var app = new Application("org.RandoPi.Desktop", GLib.ApplicationFlags.None);
         app.Register(GLib.Cancellable.Current);
         
         var win = new MainWindow();
@@ -29,16 +32,26 @@ public static class Program
         Application.Run();
     }
 
+    private static void LoadAppSettings()
+    {
+        var config = new ConfigurationBuilder()
+            .AddJsonFile("appsettings.json")
+            .AddJsonFile("appsettings.local.json", true)
+            .Build();
+        StaticData.AppSettings = config.Get<AppSettings>();
+    }
+
     private static void StartApiServer()
     {
-        if (Debugger.IsAttached) return;
+        // Pipe server for communication from API server
+        Task.Run(async () => await StartPipeServer());
         
+        // Execute the server as a separate process
         var startInfo = new ProcessStartInfo
         {
             UseShellExecute = true,
             FileName = "RandoPi.Api.exe"
         };
-
         StaticData.ApiServerWorker = Process.Start(startInfo);
     }
 

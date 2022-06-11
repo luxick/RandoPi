@@ -2,8 +2,9 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using Gtk;
-using Cairo;
 using Gdk;
+using RandoPi.Desktop.Providers;
+using RandoPi.Shared;
 using Key = Gdk.Key;
 using UI = Gtk.Builder.ObjectAttribute;
 using Window = Gtk.Window;
@@ -14,19 +15,22 @@ namespace RandoPi.Desktop;
 class MainWindow : Window
 {
     private bool _isFullScreen;
-
-    private Pixbuf _currentFrame;
+    private Pixbuf? _currentFrame;
+    private readonly ImageProvider _imageProvider;
+    private DrawingArea _drawingArea;
         
     public MainWindow() : base(WindowType.Toplevel)
     {
+        _imageProvider = new ImageProvider();
+        _imageProvider.LoadImageSources();
+        _imageProvider.CurrentMode = ImageMode.File;
+        
         KeyReleaseEvent += OnKeyReleaseEvent;
         DeleteEvent += Window_DeleteEvent;
         
-        var drawingArea = new DrawingArea();
-        drawingArea.Drawn += AreaDrawn;
-        Add(drawingArea);
-        
-        LoadNextFrame();
+        _drawingArea = new DrawingArea();
+        _drawingArea.Drawn += AreaDrawn;
+        Add(_drawingArea);
 
         ShowAll();
         
@@ -34,10 +38,13 @@ class MainWindow : Window
             ToggleFullscreen();
     }
 
-    private void LoadNextFrame()
+    private void PrepareNextFrame()
     {
-        var bytes = File.ReadAllBytes(@"image.png");
-        _currentFrame = new Pixbuf(bytes);
+        var result = _imageProvider.LoadNextImage();
+        if (!result.Success) return;
+        
+        _currentFrame = new Pixbuf(result.Value);
+        QueueDraw();
     }
 
     private void AreaDrawn(object o, DrawnArgs args)
@@ -45,9 +52,12 @@ class MainWindow : Window
         var cr = args.Cr;
         cr.SetSourceRGB(0, 0, 0);
         cr.Paint();
-        
-        Gdk.CairoHelper.SetSourcePixbuf(cr, _currentFrame, 0, 0);
-        cr.Paint();
+
+        if (_currentFrame != null)
+        {
+            Gdk.CairoHelper.SetSourcePixbuf(cr, _currentFrame, 0, 0);
+            cr.Paint();
+        }
         
         ((IDisposable)cr.GetTarget()).Dispose();
         ((IDisposable)cr).Dispose();
@@ -60,6 +70,9 @@ class MainWindow : Window
 
         if (args.Event.Key is Key.f)
             ToggleFullscreen();
+
+        if (args.Event.Key is Key.space)
+            PrepareNextFrame();
 
     }
 
