@@ -10,5 +10,6 @@ public enum ImageMode
 {
     None,
     File,
-    Inspirobot
+    Inspirobot,
+    Foxes
 }

@@ -9,7 +9,7 @@ public class ImageProvider
 {
     public ImageMode CurrentMode { get; set; } = ImageMode.None;
 
-    private Dictionary<ImageMode, IImageSource> _sources = new();
+    private readonly Dictionary<ImageMode, IImageSource> _sources = new();
 
     public ImageProvider()
     {
@@ -18,8 +18,8 @@ public class ImageProvider
 
     public void LoadImageSources()
     {
-        var fileSource = new FileSource();
-        _sources.Add(ImageMode.File, fileSource);
+        _sources.Add(ImageMode.File, new FileSource());
+        _sources.Add(ImageMode.Foxes, new FoxSource());
     }
 
     public Result<byte[]> LoadNextImage()

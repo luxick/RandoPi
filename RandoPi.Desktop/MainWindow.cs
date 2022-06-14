@@ -23,7 +23,7 @@ class MainWindow : Window
     {
         _imageProvider = new ImageProvider();
         _imageProvider.LoadImageSources();
-        _imageProvider.CurrentMode = ImageMode.File;
+        _imageProvider.CurrentMode = ImageMode.Foxes;
         
         KeyReleaseEvent += OnKeyReleaseEvent;
         DeleteEvent += Window_DeleteEvent;
