@@ -42,20 +42,22 @@ class MainWindow : Window
     {
         var result = _imageProvider.LoadNextImage();
         if (!result.Success) return;
-        
         _currentFrame = new Pixbuf(result.Value);
         QueueDraw();
     }
 
     private void AreaDrawn(object o, DrawnArgs args)
     {
+        if(o is not DrawingArea area) return;
+        
         var cr = args.Cr;
         cr.SetSourceRGB(0, 0, 0);
         cr.Paint();
-
+        
         if (_currentFrame != null)
         {
-            Gdk.CairoHelper.SetSourcePixbuf(cr, _currentFrame, 0, 0);
+            var (pixbuf, x, y) = ImageHelper.ScaleFrameToArea(area, _currentFrame);
+            Gdk.CairoHelper.SetSourcePixbuf(cr, pixbuf, x, y);
             cr.Paint();
         }
         
